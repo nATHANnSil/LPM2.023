@@ -1,0 +1,36 @@
+public class ContaCorrente extends Conta {
+    private double limite;
+
+    public ContaCorrente(String nome, String cpf, double limite) {
+        super(nome, cpf);
+        this.limite = limite;
+    }
+
+    @Override
+    public void sacar(double valor) {
+        if (getSaldo() + limite >= valor) {
+            depositar(-valor);
+        } else {
+            System.out.println("Saldo insuficiente.");
+        }
+    }
+
+    @Override
+    public void depositar(double valor) {
+        if (getSaldo() < 0) {
+            super.depositar(valor - (Math.abs(getSaldo()) * 0.03 + 10));
+        } else {
+            super.depositar(valor);
+        }
+    }
+
+    @Override
+    public double getRendimentoMensal() {
+        return 0;
+    }
+
+    @Override
+    public double getImposto() {
+        return 0;
+    }
+}

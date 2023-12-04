@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class DirecaoXuBank {
+    private List<Cliente> clientes;
+
+    public DirecaoXuBank() {
+        this.clientes = new ArrayList<>();
+    }
+
+    public void adicionarCliente(Cliente cliente) {
+        this.clientes.add(cliente);
+    }
+
+    public double getValorEmCustodia() {
+        double total = 0.0;
+        for (Cliente cliente : clientes) {
+            total += cliente.getSaldoTotal();
+        }
+        return total;
+    }
+
+    public double getSaldoMedio() {
+        return getValorEmCustodia() / clientes.size();
+    }
+
+    public Cliente getClienteComMaiorSaldo() {
+        Cliente clienteComMaiorSaldo = null;
+        for (Cliente cliente : clientes) {
+            if (clienteComMaiorSaldo == null || cliente.getSaldoTotal() > clienteComMaiorSaldo.getSaldoTotal()) {
+                clienteComMaiorSaldo = cliente;
+            }
+        }
+        return clienteComMaiorSaldo;
+    }
+
+    public Cliente getClienteComMenorSaldo() {
+        Cliente clienteComMenorSaldo = null;
+        for (Cliente cliente : clientes) {
+            if (clienteComMenorSaldo == null || cliente.getSaldoTotal() < clienteComMenorSaldo.getSaldoTotal()) {
+                clienteComMenorSaldo = cliente;
+            }
+        }
+        return clienteComMenorSaldo;
+    }
+}
