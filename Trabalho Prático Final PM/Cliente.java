@@ -13,6 +13,18 @@ public class Cliente {
         this.senha = senha;
         this.contas = new ArrayList<>();
     }
+    
+    public String getNome() {
+        return this.nome;
+    }
+    
+    public String getCpf() {
+    	return this.cpf;
+    }
+    
+    public String getSenha() {
+    	return this.senha;
+    }
 
     public void adicionarConta(Conta conta) {
         this.contas.add(conta);
