@@ -11,6 +11,10 @@ public class DirecaoXuBank {
     public void adicionarCliente(Cliente cliente) {
         this.clientes.add(cliente);
     }
+    
+    public List<Cliente> getClientes(){
+    	return this.clientes;
+    }
 
     public double getValorEmCustodia() {
         double total = 0.0;
