@@ -4,6 +4,7 @@ public class Main {
     private static DirecaoXuBank direcao = new DirecaoXuBank();
     private static Cliente clienteAtual = null;
 
+    //Menu inicial do sistema
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         while (true) {
@@ -21,6 +22,8 @@ public class Main {
             }
         }
     }
+
+    //Menu de Opções para o Cliente
 
     private static void menuCliente(Scanner scanner) {
         System.out.println("1. Criar nova conta");
@@ -88,6 +91,8 @@ public class Main {
         }
     }        
 
+    //Caso o cliente tenha escolhido a opção de criar conta
+
     private static Conta criarConta(Scanner scanner) {
         System.out.println("Digite o tipo de conta que deseja criar (corrente, poupanca, rendafixa, investimento):");
         String tipo = scanner.next();
@@ -121,6 +126,8 @@ public class Main {
         return new Cliente(nome, cpf, senha);
     }
 
+    //Menu de opções para os diretores
+
     private static void menuDiretores(Scanner scanner) {
         System.out.println("1. Valor total em custódia para cada tipo de conta");
         System.out.println("2. Saldo médio das contas");
@@ -144,6 +151,8 @@ public class Main {
             System.out.println("Cliente com menor saldo: " + clienteComMenorSaldo.getNome());
         }
     }
+
+    //Opção de passar os meses
     
     private static void passarMeses(Scanner scanner) {
         System.out.println("Digite o número de meses que deseja passar:");

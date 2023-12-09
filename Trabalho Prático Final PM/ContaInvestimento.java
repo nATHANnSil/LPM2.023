@@ -13,10 +13,14 @@ public class ContaInvestimento extends Conta {
         }
     }
 
+    //Método para calcular o rendimento mensal
+
     @Override
     public double getRendimentoMensal() {
         return getSaldo() * (Math.random() * (0.015 - (-0.006)) - 0.006);
     }
+
+    //Método para fazer o cálculo de imposto
 
     @Override
     public double getImposto() {

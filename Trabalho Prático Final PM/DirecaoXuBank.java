@@ -28,6 +28,9 @@ public class DirecaoXuBank {
         return getValorEmCustodia() / clientes.size();
     }
 
+    //Método para obter o cliente com Maior Saldo
+
+
     public Cliente getClienteComMaiorSaldo() {
         Cliente clienteComMaiorSaldo = null;
         for (Cliente cliente : clientes) {
@@ -37,6 +40,8 @@ public class DirecaoXuBank {
         }
         return clienteComMaiorSaldo;
     }
+
+    //Método para obter o cliente com Menor Saldo
 
     public Cliente getClienteComMenorSaldo() {
         Cliente clienteComMenorSaldo = null;

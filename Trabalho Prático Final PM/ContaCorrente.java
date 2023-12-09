@@ -6,6 +6,8 @@ public class ContaCorrente extends Conta {
         this.limite = limite;
     }
 
+    //Método para sacar
+
     @Override
     public void sacar(double valor) {
         if (getSaldo() + limite >= valor) {
@@ -14,6 +16,8 @@ public class ContaCorrente extends Conta {
             System.out.println("Saldo insuficiente.");
         }
     }
+
+    //Método para depositar
 
     @Override
     public void depositar(double valor) {
@@ -24,11 +28,15 @@ public class ContaCorrente extends Conta {
         }
     }
 
+    //Método para calcular o rendimento mensal
+
     @Override
     public double getRendimentoMensal() {
         return 0;
-    }
 
+    }
+    //Método para fazer o cálculo de imposto
+    
     @Override
     public double getImposto() {
         return 0;
