@@ -29,6 +29,7 @@ public class Main {
         System.out.println("4. Verificar situação das contas");
         System.out.println("Escolha uma opção:");
         int opcao = scanner.nextInt();
+    
         if (opcao == 1) {
             // Código para criar nova conta
             Conta novaConta = criarConta(scanner);
@@ -37,21 +38,55 @@ public class Main {
             } else {
                 System.out.println("Não foi possível criar a conta. Por favor, tente novamente.");
             }
-        } else if (opcao == 2) {
-            // Código para sacar
-            System.out.println("Digite o valor que deseja sacar:");
+        } else if (opcao == 2 || opcao == 3) {
+            if (clienteAtual.getContas().isEmpty()) {
+                System.out.println("Você não possui contas. Por favor, crie uma conta antes de sacar ou depositar.");
+                return;
+            }
+    
+            System.out.println("Escolha a conta para " + (opcao == 2 ? "sacar" : "depositar") + ":");
+    
+            for (int i = 0; i < clienteAtual.getContas().size(); i++) {
+                Conta conta = clienteAtual.getContas().get(i);
+                System.out.println((i + 1) + ". " + conta.getNumeroDaConta() + " - Tipo: " + getTipoConta(conta) + " - Saldo: " + conta.getSaldo());
+            }
+    
+            int escolhaConta = scanner.nextInt();
+    
+            if (escolhaConta < 1 || escolhaConta > clienteAtual.getContas().size()) {
+                System.out.println("Escolha de conta inválida. Tente novamente.");
+                return;
+            }
+    
+            Conta contaSelecionada = clienteAtual.getContas().get(escolhaConta - 1);
+    
+            System.out.println("Digite o valor:");
             double valor = scanner.nextDouble();
-            clienteAtual.getContas().get(0).sacar(valor); // Supondo que o cliente sacará da primeira conta
-        } else if (opcao == 3) {
-            // Código para depositar
-            System.out.println("Digite o valor que deseja depositar:");
-            double valor = scanner.nextDouble();
-            clienteAtual.getContas().get(0).depositar(valor); // Supondo que o cliente depositará na primeira conta
+            if (opcao == 2) { // Sacar
+                contaSelecionada.sacar(valor);
+            } else if (opcao == 3) { // Depositar
+                contaSelecionada.depositar(valor);
+            }
         } else if (opcao == 4) {
             // Código para verificar situação das contas
             clienteAtual.verContas();
         }
     }
+    
+    
+    private static String getTipoConta(Conta conta) {
+        if (conta instanceof ContaCorrente) {
+            return "Corrente";
+        } else if (conta instanceof ContaPoupanca) {
+            return "Poupança";
+        } else if (conta instanceof ContaRendaFixa) {
+            return "Renda Fixa";
+        } else if (conta instanceof ContaInvestimento) {
+            return "Investimento";
+        } else {
+            return "Desconhecido";
+        }
+    }        
 
     private static Conta criarConta(Scanner scanner) {
         System.out.println("Digite o tipo de conta que deseja criar (corrente, poupanca, rendafixa, investimento):");
@@ -62,24 +97,26 @@ public class Main {
         String cpf = scanner.next();
         System.out.println("Digite a senha do cliente:");
         String senha = scanner.next();
+        System.out.println("Digite o número da conta:");
+        String numeroDaConta = scanner.next();
         clienteAtual = criarCliente(nome, cpf, senha);
         direcao.adicionarCliente(clienteAtual);
         if (tipo.equals("corrente")) {
             System.out.println("Digite o limite para a conta corrente:");
             double limite = scanner.nextDouble();
-            return new ContaCorrente(nome, cpf, limite);
+            return new ContaCorrente(numeroDaConta, nome, cpf, limite);
         } else if (tipo.equals("poupanca")) {
-            return new ContaPoupanca(nome, cpf);
+            return new ContaPoupanca(numeroDaConta, nome, cpf);
         } else if (tipo.equals("rendafixa")) {
-            return new ContaRendaFixa(nome, cpf);
+            return new ContaRendaFixa(numeroDaConta, nome, cpf);
         } else if (tipo.equals("investimento")) {
-            return new ContaInvestimento(nome, cpf);
+            return new ContaInvestimento(numeroDaConta, nome, cpf);
         } else {
             System.out.println("Tipo de conta inválido. Por favor, tente novamente.");
             return null;
         }
     }
-
+    
     private static Cliente criarCliente(String nome, String cpf, String senha) {
         return new Cliente(nome, cpf, senha);
     }

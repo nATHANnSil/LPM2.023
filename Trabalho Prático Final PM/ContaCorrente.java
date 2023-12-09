@@ -1,8 +1,8 @@
 public class ContaCorrente extends Conta {
     private double limite;
 
-    public ContaCorrente(String nome, String cpf, double limite) {
-        super(nome, cpf);
+    public ContaCorrente(String numeroDaConta, String nome, String cpf, double limite) {
+        super(numeroDaConta, nome, cpf);
         this.limite = limite;
     }
 

@@ -1,8 +1,8 @@
 public class ContaRendaFixa extends Conta {
     private static final double TAXA = 20;
 
-    public ContaRendaFixa(String nome, String cpf) {
-        super(nome, cpf);
+    public ContaRendaFixa(String numeroDaConta, String nome, String cpf) {
+        super(numeroDaConta, nome, cpf);
     }
 
     @Override
