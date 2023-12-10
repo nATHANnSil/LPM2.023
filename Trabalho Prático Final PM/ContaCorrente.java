@@ -22,12 +22,11 @@ public class ContaCorrente extends Conta {
     @Override
     public void depositar(double valor) {
         if (getSaldo() < 0) {
-            super.depositar(valor - (Math.abs(getSaldo()) * 0.03 + 10));
-        } else {
-            super.depositar(valor);
+            double taxa = Math.abs(getSaldo()) * 0.03 + 10;
+            valor -= taxa;
         }
+        super.depositar(valor);
     }
-
     //Método para calcular o rendimento mensal
 
     @Override
